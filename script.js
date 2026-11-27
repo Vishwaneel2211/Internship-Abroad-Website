@@ -4,6 +4,23 @@
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 
+  /* ---- Reference-style announcement bar and header ---- */
+  if (!$('.announcement')) {
+    const applyLink = document.querySelector('.menu a[href="#apply"], .menu a[href="index.html#apply"]');
+    const announcement = document.createElement('div');
+    announcement.className = 'announcement';
+    announcement.innerHTML = '<a href="' + (applyLink ? applyLink.getAttribute('href') : '#apply') + '">Plan your 2027 internship - Apply today! <i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>';
+    document.body.prepend(announcement);
+  }
+
+  const navIn = $('.nav-in');
+  if (navIn && !$('.nav-tools')) {
+    const tools = document.createElement('div');
+    tools.className = 'nav-tools';
+    tools.innerHTML = '<a href="destinations.html" aria-label="Search destinations"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></a><a href="programs.html" aria-label="Saved internship programs"><i class="fa-regular fa-heart" aria-hidden="true"></i></a>';
+    navIn.appendChild(tools);
+  }
+
   /* ---- Configuration: EDIT HERE ---- */
   const WHATSAPP_NUMBER = '0000000000'; // PLACEHOLDER: country code + number, digits only
   $$('[data-wa]').forEach(a => a.href = a.href.replace('0000000000', WHATSAPP_NUMBER));
